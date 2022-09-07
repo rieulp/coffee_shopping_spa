@@ -1,6 +1,3 @@
-const API_END_POINT = `${location.protocol}//${location.hostname}:5000/api`;
-console.log(API_END_POINT);
-
 export const request = async (url: string, options: RequestInit = {}) => {
   try {
     const response = await fetch(url, options);
@@ -17,11 +14,11 @@ export const request = async (url: string, options: RequestInit = {}) => {
 };
 
 export const fetchProductList = async () => {
-  const data = await request(`${API_END_POINT}/products`);
+  const data = await request(`api/products`);
   return data || [];
 };
 
 export const fetchProduct = async (productId: number) => {
-  const data = await request(`${API_END_POINT}/products/${productId}`);
+  const data = await request(`api/products/${productId}`);
   return data || {};
 };

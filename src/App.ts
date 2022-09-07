@@ -1,8 +1,11 @@
+import { router } from "./router/index";
+
 export default class App {
   private state = {};
 
   constructor(private $app: HTMLDivElement) {
     this.render();
+    router.init([{ path: "/", view: () => console.log("home") }]);
   }
   setState(nextState: {}) {
     this.state = { ...this.state, ...nextState };
@@ -10,6 +13,8 @@ export default class App {
   }
 
   render() {
-    this.$app.innerHTML = '<h1>blah</h1>';
+    this.$app.innerHTML = "<h1>blah</h1>";
+
+    // fetchProductList().then((data) => console.log(data));
   }
 }

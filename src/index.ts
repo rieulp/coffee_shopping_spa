@@ -1,7 +1,5 @@
-import App from './App';
+import App from "./App";
 
-const $app = document.querySelector<HTMLDivElement>('.App');
-console.log($app);
-if ($app) {
-  const app = new App($app);
-}
+const $app = document.querySelector<HTMLDivElement>(".App");
+if ($app) new App($app);
+console.log("load");
