@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/rayoungpark/coffee_shopping_spa/issues"
   },
-  "homepage": "https://github.com/rayoungpark/coffee_shopping_spa#readme",
+  "homepage": ".",
   "dependencies": {
     "express": "^4.18.1",
     "typescript": "^4.8.2"
@@ -25,7 +25,9 @@
     "@babel/core": "^7.19.0",
     "@babel/preset-env": "^7.19.0",
     "babel-loader": "^8.2.5",
+    "css-loader": "^6.7.1",
     "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.1",
     "nodemon": "^2.0.19",
     "request": "^2.88.2",
     "webpack": "^5.74.0",
