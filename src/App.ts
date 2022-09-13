@@ -1,4 +1,4 @@
-import ProductListPage from './pages/ProductListPage';
+import Home from './pages/Home';
 import { initRouter } from './router/index';
 import 'C:/Users/rayou/Desktop/과제테스트/coffee_shopping_spa/style.css';
 export default class App {
@@ -7,7 +7,7 @@ export default class App {
 
   constructor(private $app: Element) {
     this.router = initRouter($app, [
-      { path: /^\/$/, view: ProductListPage },
+      { path: /^\/$/, view: Home },
       {
         path: /^\/products\/[0-9]+$/,
         view: () => console.log('detail'),
@@ -17,9 +17,6 @@ export default class App {
         view: () => console.log('cart'),
       },
     ]);
-
-    // const homePage = new ProductListPage({ $target: $app, initialState: { products: [] } });
-    // this.router.router();
   }
   setState(nextState: {}) {
     this.state = { ...this.state, ...nextState };
