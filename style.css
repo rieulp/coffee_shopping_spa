@@ -15,7 +15,7 @@ body {
 .App {
   width: 100%;
   height: 100%;
-  max-width: 1200px;
+  max-width: 1880px;
   margin: 0 auto;
 }
 
@@ -25,6 +25,7 @@ body {
 
 .ProductListPage {
   margin: 0 auto;
+  padding-bottom: 2rem;
 }
 
 .ProductListPage h1 {
@@ -37,9 +38,11 @@ body {
 }
 
 .ProductListPage ul {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 300px);
+  gap: 10px;
+  grid-gap: 10px;
+  justify-items: center;
   justify-content: center;
 }
 
@@ -192,4 +195,17 @@ body {
   text-align: right;
   padding-right: 16px;
   margin-bottom: 16px;
+}
+
+@media screen and (max-width: 1500px) {
+  .ProductListPage ul {
+    grid-template-columns: repeat(3, 300px);
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .ProductListPage ul {
+    padding: 0 10px;
+    grid-template-columns: repeat(auto-fill, 300px);
+  }
 }
