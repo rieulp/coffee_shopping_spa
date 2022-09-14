@@ -1,4 +1,5 @@
-import Home from './pages/Home';
+import HomePage from './pages/HomePage';
+import ProductDetailPage from './pages/ProductDetailPage';
 import { initRouter } from './router/index';
 import 'C:/Users/rayou/Desktop/과제테스트/coffee_shopping_spa/style.css';
 export default class App {
@@ -7,10 +8,10 @@ export default class App {
 
   constructor(private $app: Element) {
     this.router = initRouter($app, [
-      { path: /^\/$/, view: Home },
+      { path: /^\/$/, view: HomePage },
       {
         path: /^\/products\/[0-9]+$/,
-        view: () => console.log('detail'),
+        view: ProductDetailPage,
       },
       {
         path: /^\/cart$/,
