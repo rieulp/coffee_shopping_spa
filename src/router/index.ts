@@ -26,7 +26,7 @@ class Router {
   }
 
   public router() {
-    console.log('route', this.routes, this.$app);
+    this.$app.innerHTML = '';
     const TargetPage = this.routes?.find((route) => {
       if (typeof route.path === 'string') return route.path === location.pathname;
       return route.path.test(location.pathname);
