@@ -16,23 +16,30 @@ export default abstract class Component<StateType> {
     this.render();
   }
 
-  abstract template(): string;
-
   // 컴포넌트 생성시 컴포넌트 기본값 설정
   abstract init(): void;
 
   abstract render(): void;
+
   /** SetState */
   // 컴포넌트의 상태 변경 로직
-  setState<K extends keyof StateType>(newState: Pick<StateType, K> | StateType): void {
+  /**
+   *
+   * @param newState 변경할 상태 값
+   * @param preventRender 값이 true인 경우상태가 변경된 후 렌더링을 수행하지 않음
+   */
+  setState<K extends keyof StateType>(newState: Pick<StateType, K> | StateType, preventRender?: boolean): void {
     if (!this.checkNeedUpdate(newState)) return;
     if (this.state) {
       this.state = { ...this.state, ...newState };
     } else {
       this.state = { ...newState } as StateType;
     }
+    if (preventRender) return;
     this.render();
   }
+
+  // 컴포넌트 상태 초기 변경 로직 -
 
   // 컴포넌트 상태 유효성 검사
   checkNeedUpdate<K extends keyof StateType>(newState: Pick<StateType, K> | StateType): boolean {
