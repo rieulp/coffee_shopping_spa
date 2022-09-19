@@ -1,3 +1,4 @@
+import CartPage from './pages/CartPage';
 import HomePage from './pages/HomePage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import { initRouter } from './router/index';
@@ -15,7 +16,7 @@ export default class App {
       },
       {
         path: /^\/cart$/,
-        view: () => console.log('cart'),
+        view: CartPage,
       },
     ]);
   }
