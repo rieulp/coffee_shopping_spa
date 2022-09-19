@@ -10,6 +10,7 @@ export default class ProductDetailPage extends Component<IProductDetailPageState
   init(): void {
     this.$element = document.createElement('div');
     this.$element.className = 'ProductDetailPage';
+
     this.$target.appendChild(this.$element);
 
     const id = location.pathname.split('/').pop();
@@ -20,10 +21,9 @@ export default class ProductDetailPage extends Component<IProductDetailPageState
     });
   }
 
-  render(): void {
+  render() {
     if (this.state && this.state.name && this.$element) {
-      const { name } = this.state;
-      this.$element.innerHTML = `<h1>${name} 상품 정보</h1>`;
+      this.$element.innerHTML = '<h1><a href="/" class="logo">Coffee Shop❤</a></h1>';
       if (!this.$productDetail) {
         this.$productDetail = new ProductDetail({
           $target: this.$element,
