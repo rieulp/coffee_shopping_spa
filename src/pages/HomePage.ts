@@ -14,7 +14,7 @@ export default class HomePage extends Component<IHomePageState> {
     this.$element = document.createElement('div');
     this.$target.appendChild(this.$element);
     this.$element.className = 'ProductListPage';
-    this.$element.innerHTML = `<h1>Coffee Shop❤</h1>`;
+    this.$element.innerHTML = `<h1 class="logo">Coffee Shop❤</h1>`;
     this.getProductList().then((products) => this.setState({ products }));
     this.$productList = new ProductList({
       $target: this.$element,
