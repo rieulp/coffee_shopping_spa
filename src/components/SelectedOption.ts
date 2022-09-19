@@ -13,7 +13,6 @@ export interface ISelectedOption {
 interface ISelectedOptionState {
   selectedOptions: ISelectedOption[];
   totalPrice: number;
-  order: () => void;
   onChange: (optionId: number, value: number) => void;
 }
 export default class SelectedOption extends Component<ISelectedOptionState> {
@@ -30,27 +29,30 @@ export default class SelectedOption extends Component<ISelectedOptionState> {
     });
 
     this.$element.addEventListener('click', (e) => {
-      const target = e.target as Element;
-      if (target.nodeName === 'BUTTON') this.state?.order();
+      if (!e.target) return;
+      const target = e.target as HTMLButtonElement;
+      if (target.nodeName !== 'BUTTON' && !target.classList.contains('deleteBtn')) return;
+      const optionId = target.closest('li')?.dataset.id;
+      optionId !== undefined && this.state?.onChange(parseInt(optionId, 10), 0);
     });
   }
 
   render() {
     if (!this.state || !this.$element) return;
-    this.$element.innerHTML = `<h3>선택된 상품</h3><ul>
-            ${
-              this.state?.selectedOptions
-                ?.map(
-                  ({ optionId, name, optionName, price, stock, quantity }) =>
-                    `<li data-id="${optionId}">${name} ${optionName} ${toComma(
-                      price
-                    )} <div><input type="number" value="${quantity}" min="1" max="${stock}">개</div><li>`
-                )
-                .join('') || ''
-            }
+    if (!this.state.selectedOptions.length) {
+      this.$element.innerHTML = '';
+      return;
+    }
+    this.$element.innerHTML = `<ul>
+            ${this.state.selectedOptions
+              .map(
+                ({ optionId, name, optionName, price, stock, quantity }) =>
+                  `<li data-id="${optionId}"><div><span class="itemName">${name} ${optionName}</span><input type="number" value="${quantity}" min="1" max="${stock}"><span class="itemPrice">${toComma(
+                    price * quantity
+                  )}원</span></div><button class="deleteBtn">✖</button><li>`
+              )
+              .join('')}
         </ul>
-        <div class="ProductDetail__totalPrice">${toComma(this.state.totalPrice)}원</div>
-        <button class="OrderButton" ${this.state.selectedOptions?.length ? '' : 'disabled'}>주문하기</button>
-        </div>`;
+        <div class="ProductDetail__totalPrice">총 상품 금액 <span class="totalPrice"><span>${toComma(this.state.totalPrice)}</span>원</span></div>`;
   }
 }

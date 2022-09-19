@@ -59,6 +59,16 @@ export default class ProductDetail extends Component<IProductDetailState> {
         }
       }
     });
+
+    this.$element.addEventListener('click', (e) => {
+      const target = e.target as Element;
+      if (target.nodeName === 'BUTTON' && target.classList.contains('OrderButton')) {
+        if (this.state) {
+          addCart(this.state.id, this.state.selectedOptions);
+          this.router?.to('/cart');
+        }
+      }
+    });
   }
 
   private getTotalPrice() {
@@ -73,7 +83,7 @@ export default class ProductDetail extends Component<IProductDetailState> {
       this.$element.innerHTML = `<img src="${imageUrl}">
             <div class="ProductDetail__info">
                 <h2>${name}</h2>
-                <div class="ProductDetail__price">${toComma(price)}원~</div>
+                <div class="ProductDetail__price">${toComma(price)}원</div>
                 <select>
                 <option>선택하세요.</option>
                 ${productOptions
@@ -95,21 +105,24 @@ export default class ProductDetail extends Component<IProductDetailState> {
             onChange: (optionId, value) => {
               const selectedOptions = [...(this.state?.selectedOptions || [])];
               const index = selectedOptions.findIndex(({ optionId: id }) => optionId === id);
-              selectedOptions[index] = { ...selectedOptions[index], quantity: Math.min(selectedOptions[index].stock, value) };
-              this.setState({ selectedOptions });
-            },
-            order: () => {
-              console.log('order!', this);
-              if (this.state) {
-                addCart(this.state.id, this.state.selectedOptions);
-                this.router?.to('/cart');
+              if (value === 0) {
+                selectedOptions.splice(index, 1);
+              } else {
+                selectedOptions[index] = { ...selectedOptions[index], quantity: Math.min(selectedOptions[index].stock, value) };
               }
+              this.setState({ selectedOptions });
             },
             selectedOptions: this.state.selectedOptions,
             totalPrice: this.getTotalPrice(),
           },
         });
+
+        $selectedOptionTarget.insertAdjacentHTML(
+          'beforeend',
+          `<button class="OrderButton" ${this.state.selectedOptions?.length ? '' : 'disabled'}>주문하기</button>`
+        );
       }
+
       this.isInit = true;
     } else {
       this.$selectedOption?.setState({ selectedOptions: this.state.selectedOptions, totalPrice: this.getTotalPrice() });
