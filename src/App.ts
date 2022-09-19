@@ -1,20 +1,29 @@
-import { router } from "./router/index";
-
+import CartPage from './pages/CartPage';
+import HomePage from './pages/HomePage';
+import ProductDetailPage from './pages/ProductDetailPage';
+import { initRouter } from './router/index';
+import 'C:/Users/rayou/Desktop/과제테스트/coffee_shopping_spa/style.css';
 export default class App {
   private state = {};
+  private router;
 
-  constructor(private $app: HTMLDivElement) {
-    this.render();
-    router.init([{ path: "/", view: () => console.log("home") }]);
+  constructor(private $app: Element) {
+    this.router = initRouter($app, [
+      { path: /^\/$/, view: HomePage },
+      {
+        path: /^\/products\/[0-9]+$/,
+        view: ProductDetailPage,
+      },
+      {
+        path: /^\/cart$/,
+        view: CartPage,
+      },
+    ]);
   }
   setState(nextState: {}) {
     this.state = { ...this.state, ...nextState };
     this.render();
   }
 
-  render() {
-    this.$app.innerHTML = "<h1>blah</h1>";
-
-    // fetchProductList().then((data) => console.log(data));
-  }
+  render() {}
 }

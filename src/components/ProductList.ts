@@ -14,10 +14,6 @@ interface IProductListState {
 }
 
 export default class ProductList extends Component<IProductListState> {
-  template(): string {
-    throw new Error('Method not implemented.');
-  }
-
   init(): void {
     this.$element = document.createElement('ul');
     this.$target.appendChild(this.$element);
