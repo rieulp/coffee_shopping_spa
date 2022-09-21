@@ -17,14 +17,21 @@ export const request = async (url: string, options: RequestInit = {}) => {
 
 export const fetchProductList = async () => {
   if (cache.all) return cache.list;
-  const data = await request(`api/products`);
+  let url = process.env.NODE_ENV === 'development' ? '/src/data/products.json' : `api/products`;
+  const data = await request(url);
   if (data) cache.list = data;
   return data || [];
 };
 
 export const fetchProduct = async (productId: number) => {
   if (cache[productId]) return cache[productId];
-  const data = await request(`api/products/${productId}`);
-  if (data) cache[productId] = data;
-  return data || {};
+  if (process.env.NODE_ENV === 'development') {
+    const data = await request('/src/data/productInfo.json');
+    if (data) cache[productId] = data[productId];
+  } else {
+    const data = await request(`api/products/${productId}`);
+    if (data) cache[productId] = data;
+  }
+
+  return cache[productId] || {};
 };
