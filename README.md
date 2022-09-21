@@ -1,4 +1,4 @@
-# Vanilla Script로 SPA 구현하기
+# Vanilla TypeScript로 SPA 구현하기
 - `Express`, `vanilla typescript`, `history API`, `Webpack` 사용
 - SPA 라우팅 시스템 구현
 
