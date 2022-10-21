@@ -296,7 +296,7 @@ body {
   }
 }
 
-@media screen and (max-width: 1500px) {
+@media screen and (min-width:1000px) and (max-width: 1500px) {
   .ProductListPage ul {
     grid-template-columns: repeat(3, 300px);
   }
