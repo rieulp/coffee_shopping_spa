@@ -88,6 +88,7 @@ body {
 }
 
 .ProductDetailPage .logo {
+  padding-left: 1rem;
   text-decoration: none;
   color: #333;
   font-size: 52px;
@@ -95,6 +96,7 @@ body {
 
 .ProductDetail {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   background-color: #fff;
   padding-top: 2rem;
@@ -102,7 +104,8 @@ body {
 }
 
 .ProductDetail img {
-  /* width: 700px; */
+  max-width: 80%;
+  margin: 0 auto;
   flex: 1;
 }
 
@@ -133,10 +136,7 @@ body {
   border: 1px solid #ccc;
 
   display: block;
-  /* overflow: hidden; */
-  /* text-overflow: ellipsis; */
   line-height: 36px;
-  /* white-space: normal; */
   position: relative;
   height: 34px;
   padding: 0 35px 0 15px;
@@ -216,7 +216,6 @@ body {
 
 .ProductDetail__totalPrice {
   margin-bottom: 16px;
-  /* font-size: 1.5rem; */
   text-align: right;
 }
 
@@ -256,7 +255,7 @@ body {
   margin-right: 16px;
 }
 
-.Cart__itemDesription {
+.Cart__itemDescription {
   width: 100%;
   align-self: center;
   display: flex;
@@ -270,10 +269,23 @@ body {
   padding-right: 16px;
   margin-bottom: 16px;
 }
+@media screen and (max-width: 815px) {
+  .CartPage {
+    width: 100%;
+  }
 
-@media screen and (max-width: 1500px) {
-  .ProductListPage ul {
-    grid-template-columns: repeat(3, 300px);
+  .ProductDetail {
+    flex-direction: column;
+  }
+
+  .ProductDetail .ProductDetail__info {
+    padding: 10px;
+  }
+
+  .Cart__itemDescription {
+    flex-direction: column;
+    font-size: 15px;
+    align-items: flex-end;
   }
 }
 
@@ -281,5 +293,11 @@ body {
   .ProductListPage ul {
     padding: 0 10px;
     grid-template-columns: repeat(auto-fill, 300px);
+  }
+}
+
+@media screen and (max-width: 1500px) {
+  .ProductListPage ul {
+    grid-template-columns: repeat(3, 300px);
   }
 }
