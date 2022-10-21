@@ -61,7 +61,7 @@ export default class Cart extends Component<ICartState> {
                 ({ quantity, imageUrl, name, optionName, price, optionPrice }, idx) =>
                   `<li class="Cart__item" data-idx="${idx}"><button class="deleteBtn">✖</button>
                 <img src="${imageUrl}">
-                <div class="Cart__itemDesription">
+                <div class="Cart__itemDescription">
                   <div>${name} ${optionName} ${quantity}개</div>
                   <div>${toComma(quantity * (+price + optionPrice))}원</div>
                 </div>

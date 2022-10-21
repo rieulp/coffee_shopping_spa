@@ -96,6 +96,7 @@ body {
 
 .ProductDetail {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   background-color: #fff;
   padding-top: 2rem;
@@ -254,7 +255,7 @@ body {
   margin-right: 16px;
 }
 
-.Cart__itemDesription {
+.Cart__itemDescription {
   width: 100%;
   align-self: center;
   display: flex;
