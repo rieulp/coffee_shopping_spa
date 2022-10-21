@@ -88,6 +88,7 @@ body {
 }
 
 .ProductDetailPage .logo {
+  padding-left: 1rem;
   text-decoration: none;
   color: #333;
   font-size: 52px;
@@ -102,7 +103,8 @@ body {
 }
 
 .ProductDetail img {
-  /* width: 700px; */
+  max-width: 80%;
+  margin: 0 auto;
   flex: 1;
 }
 
@@ -133,10 +135,7 @@ body {
   border: 1px solid #ccc;
 
   display: block;
-  /* overflow: hidden; */
-  /* text-overflow: ellipsis; */
   line-height: 36px;
-  /* white-space: normal; */
   position: relative;
   height: 34px;
   padding: 0 35px 0 15px;
@@ -216,7 +215,6 @@ body {
 
 .ProductDetail__totalPrice {
   margin-bottom: 16px;
-  /* font-size: 1.5rem; */
   text-align: right;
 }
 
@@ -281,5 +279,15 @@ body {
   .ProductListPage ul {
     padding: 0 10px;
     grid-template-columns: repeat(auto-fill, 300px);
+  }
+}
+
+@media screen and (max-width: 815px) {
+  .ProductDetail {
+    flex-direction: column;
+  }
+
+  .ProductDetail .ProductDetail__info {
+    padding: 10px;
   }
 }
